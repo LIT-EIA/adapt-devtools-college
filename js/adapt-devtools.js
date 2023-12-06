@@ -11,6 +11,7 @@ define([
 	'./pass-half-fail',
 	'./toggle-banking',
 	'./map',
+	'./translation.js',
 	'./auto-answer',
 	'./utils',
 	'./end-trickle',
@@ -21,7 +22,7 @@ define([
 	'./enable',
 	'./toggle-trace-focus',
 	'./toggle-completion'
-], function(Adapt, AdaptModel, DevtoolsModel, PassHalfFail, ToggleBanking, Map) {
+], function(Adapt, AdaptModel, DevtoolsModel, PassHalfFail, ToggleBanking, Map, initializeI18N) {
 
 	var navigationView;
 
@@ -30,12 +31,14 @@ define([
 		className:'devtools',
 
 		events:{
+			'click .show-stats':'onShowStats',
 			'click .end-trickle':'onEndTrickle',
 			'change .hinting input':'onToggleHinting',
 			'change .banking input':'onToggleBanking',
 			'change .feedback input':'onToggleFeedback',
 			'change .auto-correct input':'onToggleAutoCorrect',
 			'change .alt-text input':'onToggleAltText',
+			'change #authoring_lang': 'onChangeLang',
 			'click .unlock':'onUnlock',
 			'click .open-map':'onOpenMap',
 			'click .open-spoor-log':'onOpenSpoorLog',
@@ -48,8 +51,8 @@ define([
 		},
 
 		initialize: function() {
-			this.render();
-
+			this._checkCurrentLang();
+			this.render('devtools');
 			this._checkUnlockVisibility();
 			this._checkSpoorLogVisibility();
 			this._checkTrickleEndVisibility();
@@ -64,16 +67,108 @@ define([
 			this._checkTraceFocusVisibility();
 		},
 
-		render: function() {
+		render: function(handlebarTemplate) {
 			var data = Adapt.devtools.toJSON();
-			var template = Handlebars.templates['devtools'];
+			var template = Handlebars.templates[handlebarTemplate];
             this.$el.html(template(data));
 			return this;
+		},
+		/*************************************************/
+		/******************* SHOW STATS ******************/
+		/*************************************************/
+
+		onShowStats: function(){
+			var statsObj = {
+				narrative: 0,
+				accordion: 0,
+				question: 0,
+				media: 0,
+				hotgraphic: 0,
+				hotgrid: 0,
+				slider: 0,
+				graphic: 0,
+				text: 0,
+				quicknav: 0,
+				imageSlider: 0
+			};
+
+			var emptyAlt = 0;
+
+			Adapt.components.models.forEach(function(component){
+				var type = component.get('_component');
+				if(type === 'mcq' || type === 'gmcq' || type === 'slider' || type === 'matching' || type === 'openTextInput'){
+					statsObj.question++;
+				} else if(type === 'graphic') {
+					var graphic = component.get('_graphic');
+					if(graphic){
+						if(!graphic.alt){
+							emptyAlt++;
+						}
+						statsObj[type]++;
+					}
+				} else {
+					statsObj[type]++;
+				}
+			});
+
+			function calculateStatic(){
+				return (statsObj.graphic || 0) + (statsObj.text || 0)
+			};
+
+			function calculateInteractive(){
+				return (Adapt.components.models.length - calculateStatic())
+			};
+
+			function calculateTestingTime(){
+				var componentsCount = Adapt.components.models.length;
+				if(componentsCount <= 75){
+					return 5
+				} else if(componentsCount > 75 && componentsCount <= 150){
+					return 10
+				} else if(componentsCount >= 151){
+					return 15
+				}
+			}
+
+			Adapt.devtools.set('_courseStats', {
+				articles: {
+					total: Adapt.articles.models.length
+				},
+				blocks: {
+					total: Adapt.blocks.models.length
+				},
+				components: {
+					total: Adapt.components.models.length,
+					details: statsObj
+				},
+				static: calculateStatic(),
+				interactive: calculateInteractive(),
+				noAltText: emptyAlt,
+				estimatedTesting: calculateTestingTime()
+			});
+			this.render('stats');
 		},
 
 		/*************************************************/
 		/********************* UNLOCK ********************/
 		/*************************************************/
+
+		onChangeLang: function(event){
+			var lang = $(event.currentTarget).find('option:selected')[0].value;
+			localStorage.setItem('lang', lang)
+			Adapt.drawer.triggerCustomView(new DevtoolsView().$el, false);
+		},
+
+		_checkCurrentLang: function() {
+			var lang =  localStorage.getItem("lang") || 'en';
+			if(lang === 'en'){
+				Adapt.devtools.set('_langEn', true)
+				Adapt.devtools.set('_langFr', false)
+			} else {
+				Adapt.devtools.set('_langEn', false)
+				Adapt.devtools.set('_langFr', true)
+			}
+		},
 
 		_checkUnlockVisibility: function() {
 			// check if function available and not already activated
@@ -360,7 +455,6 @@ define([
 		},
 
 		onPassHalfFailComplete: function(tutorEnabled) {
-			console.log('onPassHalfFailComplete');
 
 			if (tutorEnabled) Adapt.devtools.set('_feedbackEnabled', true);
 
@@ -442,11 +536,11 @@ define([
 		if (!Adapt.devtools.get('_isEnabled')) return;
 
 		if (navigationView) navigationView.remove();
-
 		navigationView = new DevtoolsNavigationView();
 	}
 
-	Adapt.once('adapt:initialize devtools:enable', function() {
+	Adapt.once('i18n:ready devtools:enable', function() {
+		initializeI18N();
 		initNavigationView();
 		Adapt.on('app:languageChanged', initNavigationView);
 	});
