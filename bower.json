@@ -17,5 +17,8 @@
         "adapt-plugin",
         "adapt-extension"
     ],
+    "pluginDependencies": {
+        "adapt-esdc-i18n": ">=0.0.1"
+    },
     "license": "GPLv3"
 }
