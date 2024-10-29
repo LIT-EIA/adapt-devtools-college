@@ -5,7 +5,7 @@
         "url": "git://github.com/cgkineo/adapt-devtools"
     },
     "framework": ">=2.2.0",
-    "version": "3.0.1",
+    "version": "3.0.11",
     "homepage": "https://github.com/cgkineo/adapt-devtools",
     "issues": "https://github.com/cgkineo/adapt-devtools/issues/",
     "displayName": "Developer tools",
@@ -18,7 +18,7 @@
         "adapt-extension"
     ],
     "pluginDependencies": {
-        "adapt-esdc-i18n": ">=0.0.1"
+        "adapt-esdc-i18n": ">=0.0.2"
     },
     "license": "GPLv3"
 }

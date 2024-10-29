@@ -1,22 +1,22 @@
 <div class="devtools-button-container">
     <div class="devtools-lang-switcher">
-        <label for="lang">{{t 'adapt-devtools-lang-switcher'}}</label>
+        <label for="lang">{{ta 'adapt-devtools-lang-switcher'}}</label>
         <select name="lang" id="authoring_lang">
-            <option lang="en" value="en" {{#if _langEn}}selected{{/if}}>{{t 'adapt-devtools-en'}}</option>
-            <option lang="fr" value="fr" {{#if _langFr}}selected{{/if}}>{{t 'adapt-devtools-fr'}}</option>
+            <option lang="en" value="en" {{#if _langEn}}selected{{/if}}>{{ta 'adapt-devtools-en'}}</option>
+            <option lang="fr" value="fr" {{#if _langFr}}selected{{/if}}>{{ta 'adapt-devtools-fr'}}</option>
         </select>
     </div>
     <div class="section-general">
-        <span>{{t 'adapt-devtools-general'}}</span>
+        <span>{{ta 'adapt-devtools-general'}}</span>
     </div>
-    <button class="drawer-item show-stats">{{t 'adapt-devtools-stats' }}</button>
+    <button class="drawer-item show-stats">{{ta 'adapt-devtools-stats' }}</button>
     <div class="drawer-item toggle hinting">
         <input type="checkbox" id="toggle-hinting" />
         <label for="toggle-hinting">
             <div class="toggle-state">
                 <div class="checkbox icon"></div>
             </div>
-            <div class="toggle-inner h5">{{t 'adapt-devtools-question-hinting'}}</div>
+            <div class="toggle-inner h5">{{ta 'adapt-devtools-question-hinting'}}</div>
         </label>
     </div>
     <div class="drawer-item toggle auto-correct">
@@ -25,17 +25,17 @@
             <div class="toggle-state">
                 <div class="checkbox icon"></div>
             </div>
-            <div class="toggle-inner h5">{{t 'adapt-devtools-auto-correct'}}</div>
+            <div class="toggle-inner h5">{{ta 'adapt-devtools-auto-correct'}}</div>
         </label>
     </div>
-    <div class="drawer-item tip auto-correct"><em>{{{t 'adapt-devtools-auto-correct-tip'}}}</em></div>
+    <div class="drawer-item tip auto-correct"><em>{{{ta 'adapt-devtools-auto-correct-tip'}}}</em></div>
     <div class="drawer-item toggle feedback">
         <input type="checkbox" id="toggle-feedback" />
         <label for="toggle-feedback">
             <div class="toggle-state">
                 <div class="checkbox icon"></div>
             </div>
-            <div class="toggle-inner h5">{{t 'adapt-devtools-tutor'}}</div>
+            <div class="toggle-inner h5">{{ta 'adapt-devtools-tutor'}}</div>
         </label>
     </div>
     <div class="drawer-item toggle alt-text">
@@ -44,17 +44,17 @@
             <div class="toggle-state">
                 <div class="checkbox icon"></div>
             </div>
-            <div class="toggle-inner h5">{{t 'adapt-devtools-show-alt-text'}}</div>
+            <div class="toggle-inner h5">{{ta 'adapt-devtools-show-alt-text'}}</div>
         </label>
     </div>
-    <button class="drawer-item unlock">{{t 'adapt-devtools-unlock'}}</button>
+    <button class="drawer-item unlock">{{ta 'adapt-devtools-unlock'}}</button>
     <div>
-        <button class="drawer-item open-map"><span>{{t 'adapt-devtools-course-map'}}</span><span class="devtools-alpha">ALPHA</span></button>
-        <button class="drawer-item open-spoor-log"><span>{{{t 'adapt-devtools-spoor-log'}}}</span></button>
+        <button class="drawer-item open-map"><span>{{ta 'adapt-devtools-course-map'}}</span><span class="devtools-alpha">ALPHA</span></button>
+        <button class="drawer-item open-spoor-log"><span>{{{ta 'adapt-devtools-spoor-log'}}}</span></button>
         <div style="clear:both;"></div>
     </div>
     <div class="section-page">
-        <span>{{t 'adapt-devtools-page'}}</span>
+        <span>{{ta 'adapt-devtools-page'}}</span>
     </div>
     <div class="drawer-item toggle banking">
         <input type="checkbox" id="toggle-banking" />
@@ -62,21 +62,21 @@
             <div class="toggle-state">
                 <div class="checkbox icon"></div>
             </div>
-            <div class="toggle-inner h5">{{{t 'adapt-devtools-question-banks'}}}</div>
+            <div class="toggle-inner h5">{{{ta 'adapt-devtools-question-banks'}}}</div>
         </label>
     </div>
-    <button class="drawer-item end-trickle">{{t 'adapt-devtools-untrickle'}}</button>
-    <button class="drawer-item complete-page">{{t 'adapt-devtools-complete-page'}}</button>
+    <button class="drawer-item end-trickle">{{ta 'adapt-devtools-untrickle'}}</button>
+    <button class="drawer-item complete-page">{{ta 'adapt-devtools-complete-page'}}</button>
     <div class="drawer-item tip pass-half-fail"></div>
     <div class="pass-half-fail-container clearfix">
-        <button class="drawer-item pass">{{t 'adapt-devtools-pass'}}</button>
-        <button class="drawer-item half">{{t 'adapt-devtools-half'}}</button>
-        <button class="drawer-item fail">{{t 'adapt-devtools-fail'}}</button>
+        <button class="drawer-item pass">{{ta 'adapt-devtools-pass'}}</button>
+        <button class="drawer-item half">{{ta 'adapt-devtools-half'}}</button>
+        <button class="drawer-item fail">{{ta 'adapt-devtools-fail'}}</button>
     </div>
     <div class="section-menu">
-        <span>{{t 'adapt-devtools-menu'}}</span>
+        <span>{{ta 'adapt-devtools-menu'}}</span>
     </div>
-    <button class="drawer-item complete-menu">{{t 'adapt-devtools-complete-menu'}}</button>
+    <button class="drawer-item complete-menu">{{ta 'adapt-devtools-complete-menu'}}</button>
     <div class="devtools-extended-settings">
         <div class="drawer-item toggle trace-focus">
             <input type="checkbox" id="toggle-trace-focus" />
@@ -84,9 +84,9 @@
                 <div class="toggle-state">
                     <div class="checkbox icon"></div>
                 </div>
-                <div class="toggle-inner h5">{{t 'adapt-devtools-trace-focus'}}</div>
+                <div class="toggle-inner h5">{{ta 'adapt-devtools-trace-focus'}}</div>
             </label>
         </div>
     </div>
-    <div class="drawer-item tip">{{{t 'adapt-devtools-dev-tips'}}}</div>
+    <div class="drawer-item tip">{{{ta 'adapt-devtools-dev-tips'}}}</div>
 </div>
