@@ -11,7 +11,7 @@ define([
 	'./pass-half-fail',
 	'./toggle-banking',
 	'./map',
-	'./translation.js',
+  './lang/translation',
 	'./auto-answer',
 	'./utils',
 	'./end-trickle',
@@ -21,8 +21,8 @@ define([
 	'./unlock',
 	'./enable',
 	'./toggle-trace-focus',
-	'./toggle-completion'
-], function(Adapt, AdaptModel, DevtoolsModel, PassHalfFail, ToggleBanking, Map, initializeI18N) {
+	'./toggle-completion',
+], function(Adapt, AdaptModel, DevtoolsModel, PassHalfFail, ToggleBanking, Map, Translation) {
 
 	var navigationView;
 
@@ -370,7 +370,7 @@ define([
 					component.set("_score", 1);
 					component.set("_attemptsLeft", Math.max(0, component.set("_attempts") - 1));
 				}
-				
+
 				component.set("_isComplete", true);
 				component.set(currentModel.has('_isInteractionsComplete') ? '_isInteractionsComplete' : '_isInteractionComplete', true);
 			});
@@ -429,7 +429,7 @@ define([
 			var unanswered = _.filter(currentModel.findDescendantModels('components'), function(m) {
 				return m.get('_isQuestionType') === true && m.get('_isSubmitted') === false;
 			});
-			
+
 			if (unanswered.length == 0)	this.$('.tip.pass-half-fail').html('');
 			else this.$('.tip.pass-half-fail').html('With the '+unanswered.length+' unanswered question(s) in this page do the following:');
 
@@ -540,7 +540,7 @@ define([
 	}
 
 	Adapt.once('i18n:ready devtools:enable', function() {
-		initializeI18N();
+    Translation.loadTranslations(Adapt);
 		initNavigationView();
 		Adapt.on('app:languageChanged', initNavigationView);
 	});
