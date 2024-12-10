@@ -23,6 +23,8 @@ define(function () {
       "adapt-devtools-text": "Text",
       "adapt-devtools-quicknav": "Quick Navigation",
       "adapt-devtools-imageSlider": "Image Slider",
+      "adapt-devtools-guidedtour": "Guided Tour",
+      "adapt-devtools-simulation": "Simulation",
       "adapt-devtools-component-types": "Component Types",
       "adapt-devtools-static": "Static",
       "adapt-devtools-interactive": "Interactive",

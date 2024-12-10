@@ -23,6 +23,8 @@ define(function () {
       "adapt-devtools-text": "Texte",
       "adapt-devtools-quicknav": "Navigation rapide",
       "adapt-devtools-imageSlider": "Curseur d'image",
+      "adapt-devtools-guidedtour": "Visite Guidée",
+      "adapt-devtools-simulation": "Simulation",
       "adapt-devtools-component-types": "Types de composants",
       "adapt-devtools-static": "Statique",
       "adapt-devtools-interactive": "Intéractif",

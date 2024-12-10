@@ -89,7 +89,9 @@ define([
 				graphic: 0,
 				text: 0,
 				quicknav: 0,
-				imageSlider: 0
+				imageSlider: 0,
+        simulation: 0,
+        guidedtour: 0
 			};
 
 			var emptyAlt = 0;
