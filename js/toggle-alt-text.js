@@ -52,7 +52,6 @@ define(function(require) {
 			var text = $img.attr('alt');
 
 			if (!text) text = $img.attr('aria-label');
-			
 			var $annotation = $(template({text:text}));
 
 			if (!text) $annotation.addClass('devtools-annotation-warning');
